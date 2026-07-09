@@ -1,5 +1,5 @@
 juegos={
- 'G001': ['Eclipse Runner', 'PC', 'accion', 'T', True,
+ 'G001': ["Eclipse Runner", "PC", "accion", "T", True,
 'NovaStudio'],
  'G002': ['Puzzle Atlas', 'Switch', 'puzzle', 'E', False,
 'BrightWorks'],
@@ -17,14 +17,14 @@ juegos={
 }
 inventario={
 
-"G001": [9990, 7],
-"G002": [19990, 0],
-"G003": [42990, 3],
-"G004": [14990, 5],
-"G005": [17990, 9],
-"G006": [39990, 2],
-"G007": [20000, 2],
-"G008": [40000, 1],
+"G001": [9990,7],
+"G002": [19990,0],
+"G003": [42990,3],
+"G004": [14990,5],
+"G005": [17990,9],
+"G006": [39990,2],
+"G007": [20000,2],
+"G008": [40000,1],
 }
 def leer_opcion():
     opcion = int(input("Ingrese una opcion: "))
@@ -44,9 +44,11 @@ def stock_plataforma(plat):
     print (f"El stock es de {stock_total}")
 
 def actualizar_juegos(codigo,nuevo_precio):
-    if codigo in inventario:
+    if codigo in inventario[codigo]:
         nuevo_precio == inventario[codigo][0]
         print (f"Se remplazo el precio de {codigo}")
+    else:
+        print ("No se encontro el juego")
         
 def busqueda_precio(p_min,p_max):
     for codigo, datos in juegos.items():
@@ -54,12 +56,11 @@ def busqueda_precio(p_min,p_max):
             print (f"Se encontraron los siguientes juegos")
             print (f"{juegos[codigo][0]} {inventario[codigo][0]}")
     
-
-
 def agregar_juego(codigo):
-    if codigo != juegos[codigo]:
+  for codigo in juegos.items():  
+    if codigo != juegos:
         codigo_new = input("Ingrese el Codigo del juego que desea agregar")
-        if codigo_new != ("") or codigo_new != codigo_old:
+        if codigo_new != ("") or codigo_new != codigo:
             titulo = input("ingrese el nombre del juego")
             if titulo  != ("") or titulo != (" "):
                 plataforma_new = input ("Ingrese la plataforma del juego")
@@ -67,14 +68,17 @@ def agregar_juego(codigo):
                     clasificacion_new = input("Ingrese la clasificacion del juego (E).(T).(M)")
                     if clasificacion_new == ("E") or clasificacion_new == ("T") or clasificacion_new == ("M"):
                         Multiplayer_New = input("Ingrese si el juego es multiplayer o no (S/N)")
-                        if Multiplayer_New != ("S") or Multiplayer_New != ("N"):
+                        if Multiplayer_New == ("S"):
+                            Multiplayer_New == True
+                        elif Multiplayer_New == ("N"):
+                            Multiplayer_New == False
                             editor_new = input("Ingrese el editor del juego")
                             if editor_new != (" ") and editor_new != (""):
                                 precio = int(input("Ingrese el precio del juego"))
                                 if precio > 0 and precio != (float):    
                                     stock = int(input("Ingrese el Stock del juego"))
                                     if stock >= 0:
-                                        juegos.add(codigo,titulo,plataforma_new,clasificacion_new,Multiplayer_New,editor_new)
+                                        juegos[0,1,2,4,5]
                                         inventario.add(precio,stock)
                                     else:
                                         print("Stock invalido")
@@ -99,19 +103,17 @@ def buscar_codigo(codigo):
     if codigo in juegos:
         print ("Se encontro el codigo")
         return codigo
-    else:
-        print("No se encontro el Codigo")
 def eliminar_juego(codigo):
     for codigo,datos in juegos.items():
-        if inventario[codigo] == codigo:
+        if inventario[codigo][0] == codigo:
             print ("Quiere borrar el juego de la tienda ?(S/N)")
             borrar = int(input("Ingrese su eleccion"))
             if borrar == "S":
-                inventario[codigo].pop
+                inventario[codigo].remove
+                juegos[codigo].remove
                 print ("Se borro el juego con exito")
             if borrar == "N":
                 print ("Se cancelo la eliminacion")
-
 
 while True:
     try:
@@ -138,7 +140,7 @@ while True:
             buscar_codigo(codigo)
             agregar_juego(codigo)
         elif opcion == 5:
-            codigo = input("Ingrese que codigo desea buscar")
+            codigo = input("Ingrese que codigo desea buscar: ")
             buscar_codigo(codigo)
             eliminar_juego(codigo)
         elif opcion == 6: 
