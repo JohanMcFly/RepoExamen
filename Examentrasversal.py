@@ -57,7 +57,7 @@ def busqueda_precio(p_min,p_max):
 
 
 def agregar_juego(codigo):
-    if codigo != juegos:
+    if codigo != juegos[codigo]:
         codigo_new = input("Ingrese el Codigo del juego que desea agregar")
         if codigo_new != ("") or codigo_new != codigo_old:
             titulo = input("ingrese el nombre del juego")
@@ -98,10 +98,19 @@ def agregar_juego(codigo):
 def buscar_codigo(codigo):
     if codigo in juegos:
         print ("Se encontro el codigo")
+        return codigo
     else:
         print("No se encontro el Codigo")
-def eliminar_juego():
-    print("123")
+def eliminar_juego(codigo):
+    for codigo,datos in juegos.items():
+        if inventario[codigo] == codigo:
+            print ("Quiere borrar el juego de la tienda ?(S/N)")
+            borrar = int(input("Ingrese su eleccion"))
+            if borrar == "S":
+                inventario[codigo].pop
+                print ("Se borro el juego con exito")
+            if borrar == "N":
+                print ("Se cancelo la eliminacion")
 
 
 while True:
@@ -129,7 +138,9 @@ while True:
             buscar_codigo(codigo)
             agregar_juego(codigo)
         elif opcion == 5:
-            eliminar_juego()
+            codigo = input("Ingrese que codigo desea buscar")
+            buscar_codigo(codigo)
+            eliminar_juego(codigo)
         elif opcion == 6: 
             print("Adios")
             break
